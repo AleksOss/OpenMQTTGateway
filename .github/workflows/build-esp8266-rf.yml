@@ -1,5 +1,4 @@
-
-name: Build ESP8266 RF Gateway
+name: Build ESP32-C2 RF Gateway
 
 on:
   workflow_dispatch:
@@ -24,11 +23,12 @@ jobs:
         run: pip install platformio
 
       - name: Build firmware
-        run: pio run -e nodemcuv2-rf
+        run: pio run -e esp32c2-rf
 
       - name: Upload firmware
+        if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: OpenMQTTGateway-ESP8266-RF
-          path: .pio/build/nodemcuv2-rf/firmware.bin
+          name: OpenMQTTGateway-ESP32-C2-RF
+          path: .pio/build/esp32c2-rf/firmware.bin
           if-no-files-found: error
