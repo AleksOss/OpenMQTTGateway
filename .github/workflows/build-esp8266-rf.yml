@@ -18,9 +18,12 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.x"
-
+        
       - name: Install PlatformIO
         run: pip install platformio
+
+      - name: Upgrade PlatformIO Core
+        run: pip install --upgrade platformio SCons
 
       - name: Build firmware
         run: pio run -e esp32c2-rf
